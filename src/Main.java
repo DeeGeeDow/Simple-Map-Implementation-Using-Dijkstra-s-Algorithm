@@ -19,7 +19,13 @@ public class Main {
                 }
             }
 
-            System.out.print(g.getWeight(1,2));
+            Dijkstra d = new Dijkstra(g);
+            System.out.println(d.getResult(0,2));
+            List<Integer> path = d.getPath(0,2);
+            for(int i=0; i<path.size(); i++){
+                System.out.print(path.get(i)+1);
+                if(i<path.size()-1) System.out.print(" --> ");
+            }
         }
     }
 }
