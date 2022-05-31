@@ -19,9 +19,25 @@ public class Main {
                 }
             }
 
+            Scanner in = new Scanner(System.in);
+            int start,finish;
+            System.out.print("Masukkan node awal : ");
+            start = in.nextInt();
+            while(start <= 0 || start > g.getV()){
+                System.out.print("Node awal tidak valid. Masukkan node awal : ");
+                start = in.nextInt();
+            }
+
+            System.out.print("Masukkan node tujuan : ");
+            finish = in.nextInt();
+            while(finish <= 0 || finish > g.getV()){
+                System.out.print("Node tujuan tidak valid. Masukkan node tujuan : ");
+                finish = in.nextInt();
+            }
+
             Dijkstra d = new Dijkstra(g);
-            System.out.println(d.getResult(0,2));
-            List<Integer> path = d.getPath(0,2);
+            System.out.println(d.getResult(start-1,finish-1));
+            List<Integer> path = d.getPath(start-1,finish-1);
             for(int i=0; i<path.size(); i++){
                 System.out.print(path.get(i)+1);
                 if(i<path.size()-1) System.out.print(" --> ");
