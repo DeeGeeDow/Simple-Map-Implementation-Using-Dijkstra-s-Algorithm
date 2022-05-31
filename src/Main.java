@@ -9,39 +9,39 @@ public class Main {
             Scanner sc = new Scanner(file);
             int v = sc.nextInt();
             Graph g = new Graph(v);
-
+            sc.nextLine();
+            g.setNode_name(sc.nextLine().split(" "));
             for(int i=0; i<v; i++){
-                int e = sc.nextInt();
-                for(int j=0; j<e; j++){
-                    int target_node = sc.nextInt();
-                    int w = sc.nextInt();
-                    g.setWeight(i, target_node-1, w);
+                String[] sline = sc.nextLine().split(" ");
+                for(int j=0; j<sline.length; j+=2){
+                    String target_node = sline[j];
+                    int w = Integer.valueOf(sline[j+1]);
+                    g.setWeight(i, g.getIndexNode(target_node), w);
                 }
             }
 
             Scanner in = new Scanner(System.in);
-            int start,finish;
+            String start,finish;
             System.out.print("Masukkan node awal : ");
-            start = in.nextInt();
-            while(start <= 0 || start > g.getV()){
+            start = in.nextLine();
+            int start_index = g.getIndexNode(start);
+            while(start_index == -1){
                 System.out.print("Node awal tidak valid. Masukkan node awal : ");
-                start = in.nextInt();
+                start = in.nextLine();
+                start_index = g.getIndexNode(start);
             }
 
             System.out.print("Masukkan node tujuan : ");
-            finish = in.nextInt();
-            while(finish <= 0 || finish > g.getV()){
+            finish = in.nextLine();
+            int finish_index = g.getIndexNode(finish);
+            while(finish_index == -1){
                 System.out.print("Node tujuan tidak valid. Masukkan node tujuan : ");
-                finish = in.nextInt();
+                finish = in.nextLine();
+                finish_index = g.getIndexNode(finish);
             }
 
             Dijkstra d = new Dijkstra(g);
-            System.out.println(d.getResult(start-1,finish-1));
-            List<Integer> path = d.getPath(start-1,finish-1);
-            for(int i=0; i<path.size(); i++){
-                System.out.print(path.get(i)+1);
-                if(i<path.size()-1) System.out.print(" --> ");
-            }
+            d.printSolution(start_index, finish_index);
         }
     }
 }

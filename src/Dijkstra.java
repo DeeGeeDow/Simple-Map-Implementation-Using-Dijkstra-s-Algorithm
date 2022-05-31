@@ -7,7 +7,6 @@ public class Dijkstra {
     private int[] distance;
     private int[] src_node;
 
-
     public Dijkstra(Graph g){
         this.g = g;
         int v = g.getV();
@@ -68,17 +67,30 @@ public class Dijkstra {
         return this.distance[finish];
     }
 
-    public List<Integer> getPath(int start, int finish){
-        if(this.start != start){
+    public List<Integer> getPath(int start, int finish) {
+        if (this.start != start) {
             this.run(start);
         }
         List<Integer> path = new ArrayList<>();
         int n = finish;
-        while(n != start){
-            path.add(0,n);
+        while (n != start) {
+            path.add(0, n);
             n = src_node[n];
         }
-        path.add(0,start);
+        path.add(0, n);
         return path;
+    }
+
+    public void printSolution(int start_index, int finish_index){
+        System.out.println(getResult(start_index,finish_index));
+        List<Integer> path = getPath(start_index,finish_index);
+        for(int i=0; i<path.size(); i++){
+            System.out.print(g.getNodeName(path.get(i)));
+            if(i<path.size()-1) {
+                System.out.print(" ---[");
+                System.out.print(g.getWeight(path.get(i), path.get(i+1)));
+                System.out.print("]--> ");
+            }
+        }
     }
 }
