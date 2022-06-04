@@ -41,7 +41,7 @@ public class Main {
             }
 
             Dijkstra d = new Dijkstra(g);
-            d.printSolution(start_index, finish_index);
+            d.drawSolution(start_index, finish_index);
         }
     }
 }
