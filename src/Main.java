@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 public class Main {
     public static void main(String[] args) throws Exception{
         if(args.length == 2 && args[0].equals("-f")){
+            // CLI
             File file = new File(args[1]);
             Scanner sc = new Scanner(file);
             int v = sc.nextInt();
@@ -42,6 +43,9 @@ public class Main {
 
             Dijkstra d = new Dijkstra(g);
             d.drawSolution(start_index, finish_index);
+        }else{
+            // GUI
+
         }
     }
 }

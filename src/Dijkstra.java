@@ -121,9 +121,9 @@ public class Dijkstra {
             int centerx=200;
             int centery=200;
             int radius=100;
-            Object[] v = new Object[6];
+            Object[] v = new Object[g.getV()];
             for(int i=0; i<g.getV(); i++){
-                v[i] = graph.insertVertex(parent, null, g.getNodeName(i), centerx + Math.cos(2*Math.PI*i/6)*radius, centerx + Math.sin(2*Math.PI*i/6)*radius, 40, 40);
+                v[i] = graph.insertVertex(parent, null, g.getNodeName(i), centerx + Math.cos(2*Math.PI*i/g.getV())*radius, centery + Math.sin(2*Math.PI*i/g.getV())*radius, 40, 40);
             }
             for(int i=0; i<g.getV(); i++){
                 for(int j=0; j<g.getV(); j++){
@@ -153,4 +153,6 @@ public class Dijkstra {
         frame.setSize(new Dimension(400,400));
         frame.setVisible(true);
     }
+
+    
 }
